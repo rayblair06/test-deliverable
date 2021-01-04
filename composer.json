@@ -1,0 +1,53 @@
+{
+    "name": "rayblair/test-deliverable",
+    "description": "",
+    "keywords": [
+        "rayblair",
+        "test-deliverable"
+    ],
+    "homepage": "https://github.com/rayblair/test-deliverable",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ray Blair",
+            "email": "rayblair06@hotmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rayblair\\TestDeliverable\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rayblair\\TestDeliverable\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rayblair\\TestDeliverable\\TestDeliverableServiceProvider"
+            ],
+            "aliases": {
+                "TestDeliverable": "Rayblair\\TestDeliverable\\TestDeliverableFacade"
+            }
+        }
+    }
+}
