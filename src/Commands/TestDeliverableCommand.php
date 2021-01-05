@@ -48,8 +48,8 @@ class TestDeliverableCommand extends Command
         $service = $this->argument('service');
         $recipient = $this->argument('recipient');
 
-        $template = $this->option('template');
-        $factory = $this->option('factory');
+        $template = $this->option('template') !== false ? resource_path('view/' . $this->option('template')) : false;
+        $factory = $this->option('factory') !== false ? factory($this->option('factory')) : false;
         $subject = $this->option('subject') !== false ? $this->option('subject') : "Test " . strtoupper($service) . " Message";
         $line = $this->option('line') !== false ? $this->option('line') : "This is a text message to confirm the " . strtoupper($service) . " service works";
 
