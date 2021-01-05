@@ -3,6 +3,7 @@
 namespace Rayblair\TestDeliverable;
 
 use Illuminate\Support\ServiceProvider;
+use Rayblair\TestDeliverable\Commands\TestDeliverableCommand;
 
 class TestDeliverableServiceProvider extends ServiceProvider
 {
@@ -40,7 +41,9 @@ class TestDeliverableServiceProvider extends ServiceProvider
             ], 'lang');*/
 
             // Registering package commands.
-            // $this->commands([]);
+            $this->commands([
+                TestDeliverableCommand::class
+            ]);
         }
     }
 
