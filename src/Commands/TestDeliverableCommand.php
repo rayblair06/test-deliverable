@@ -16,10 +16,10 @@ class TestDeliverableCommand extends Command
     protected $signature = 'test:deliverable
                             {service : Note}
                             {recipient : Note}
-                            {--template : Note}
-                            {--subject : Note}
-                            {--line : Note}
-                            {--factory : Note}';
+                            {--template= : Note}
+                            {--factory= : Note}
+                            {--subject= : Note}
+                            {--line= : Note}';
 
     /**
      * The console command description.
@@ -53,9 +53,22 @@ class TestDeliverableCommand extends Command
         $subject = $this->option('subject') !== false ? $this->option('subject') : "Test " . strtoupper($service) . " Message";
         $line = $this->option('line') !== false ? $this->option('line') : "This is a text message to confirm the " . strtoupper($service) . " service works";
 
-        Notification::route($service, $recipient)
-            ->notify(new TestNotification($subject, $line)
-        );
+        switch (true) {
+            case $this->option('template') !== false && $this->option('factory') !== false:
+                // Send a tempate with a factory injected in
+                $this->line('TODO send template and factory notification');
+                break;
+            case $this->option('template') !== false:
+                // Send a template
+                $this->line('TODO send template notification');
+                break;
+            default:
+                // Send Default Test Message
+                Notification::route($service, $recipient)
+                    ->notify(new TestNotification($subject, $line)
+                );
+                break;
+        }
 
         $this->info("The deliverable " . strtoupper($service) . " test notification was sent");
     }
